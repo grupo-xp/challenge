@@ -1,6 +1,5 @@
 # Front-end Challenge
 
-https://github.com/rodyrafa/challenge/react
-https://github.com/rodyrafa/challenge/es6
-https://github.com/rodyrafa/challenge/angular
-
+* [React](https://github.com/RodyRafa/challenge/tree/master/react)
+* [Angular](https://github.com/RodyRafa/challenge/tree/master/angular)
+* [ES6](https://github.com/RodyRafa/challenge/tree/master/es6)
