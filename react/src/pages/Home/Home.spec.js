@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import Home from "./";
 
-it("can render a App", () => {
+it("can render a Home", () => {
   const container = document.createElement("div");
-  ReactDOM.render(<App />, container);
+  ReactDOM.render(<Home />, container);
   const text = container.querySelector("h1");
   expect(text.textContent).toBe("Home");
 });
