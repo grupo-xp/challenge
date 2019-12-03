@@ -1,6 +1,15 @@
 import React from "react";
+import Routes from "./routes";
 
-export default () => {
+export const App = () => {
   //   console.log(process.env.API);
-  return <h1>Front-end Challenge</h1>;
+  return (
+    <>
+      <nav className="logo">Logo</nav>
+      <div className="container">
+        <Routes />
+      </div>
+    </>
+  );
 };
+export default App;
