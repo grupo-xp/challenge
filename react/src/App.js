@@ -1,7 +1,7 @@
-import React from 'react';
-import Routes from './routes';
+import React from "react";
+import Routes from "./routes";
 
-const App = () => {
+export const App = () => {
   //   console.log(process.env.API);
   return (
     <>

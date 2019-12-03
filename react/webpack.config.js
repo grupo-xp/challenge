@@ -5,6 +5,8 @@ const Dotenv = require("dotenv-webpack");
 module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
+    historyApiFallback: true,
+    hot: true,
     port: 3000
   },
   entry: path.resolve(__dirname, "src", "index.js"),
