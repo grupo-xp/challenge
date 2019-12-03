@@ -1,5 +1,5 @@
-import React from "react";
-import Routes from "./routes";
+import React from 'react';
+import Routes from './routes';
 
 const App = () => {
   //   console.log(process.env.API);
