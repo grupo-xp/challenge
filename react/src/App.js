@@ -1,7 +1,7 @@
 import React from "react";
 import Routes from "./routes";
 
-export default () => {
+const App = () => {
   //   console.log(process.env.API);
   return (
     <>
@@ -12,3 +12,4 @@ export default () => {
     </>
   );
 };
+export default App;

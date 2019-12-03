@@ -8,3 +8,4 @@ it("can render a Home", () => {
   const text = container.querySelector("h1");
   expect(text.textContent).toBe("Home");
 });
+
