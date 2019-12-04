@@ -1,9 +1,10 @@
 import React from "react";
 import style from "./Search.scss";
 import PropTypes from "prop-types";
+import classNames from "classNames";
 
-export const Search = ({ onChange }) => (
-  <div className={style.search}>
+export const Search = ({ className, onChange }) => (
+  <div className={classNames(style.search, className)}>
     <label htmlFor="search" className={style.label}>
       Busque por Artistas
     </label>

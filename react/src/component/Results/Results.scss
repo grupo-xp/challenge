@@ -1,0 +1,14 @@
+.results {
+  flex: 1;
+
+  .title {
+    margin-bottom: $gutter;
+    margin-top: $gutter;
+  }
+}
+
+.xpto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

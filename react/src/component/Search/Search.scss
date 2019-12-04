@@ -17,6 +17,16 @@
     font-weight: bold;
     padding: $padding;
 
+    &:-webkit-autofill {
+      &,
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 0 #{$font-size-h1} transparent inset;
+        -webkit-text-fill-color: $text-color;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+    }
+
     &::placeholder {
       color: $text-muted;
     }
