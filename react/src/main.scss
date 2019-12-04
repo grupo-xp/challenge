@@ -12,6 +12,7 @@
     background-color: $body-bg;
     color: $text-color;
     font-family: $font-family;
+    font-size: $font-size-base;
     height: 100%;
     margin: 0;
     min-height: 100%;
@@ -24,5 +25,10 @@
     @media (min-width: 720px) {
       flex-direction: row;
     }
+  }
+
+  small {
+    color: $text-muted;
+    font-size: $font-size-small;
   }
 }
