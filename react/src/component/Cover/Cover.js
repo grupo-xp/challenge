@@ -3,17 +3,21 @@ import style from "./Cover.scss";
 import PropTypes from "prop-types";
 import classNames from "classNames";
 
-export const Cover = ({ small }) => (
+export const Cover = ({ small, className, name, artist }) => (
   <div
-    className={classNames(style.Cover, {
-      [style.small]: small
-    })}
+    className={classNames(
+      style.Cover,
+      {
+        [style.small]: small
+      },
+      className
+    )}
   >
     <img className={style.img}></img>
     <div className={style.description}>
-      <p className={style.album}>Nome do Álbum</p>
+      <p className={style.album}>{name}</p>
       <p className={style.artist}>
-        <small>Nome do Artista</small>
+        <small>{artist}</small>
       </p>
     </div>
   </div>

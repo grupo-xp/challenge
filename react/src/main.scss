@@ -28,6 +28,15 @@
     }
   }
 
+  a {
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $text-muted;
+    }
+  }
+
   small {
     color: $text-muted;
     font-size: $font-size-small;
