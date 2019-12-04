@@ -21,7 +21,6 @@
   #app {
     display: flex;
     flex-direction: column;
-    min-height: 100%;
     @media (min-width: 720px) {
       flex-direction: row;
     }
