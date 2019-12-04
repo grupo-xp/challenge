@@ -25,6 +25,8 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.1",
     "dotenv-webpack": "^1.7.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.7.2",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.7.0",

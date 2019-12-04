@@ -1,9 +1,10 @@
 import React from "react";
 import style from "./Home.scss";
+import Search from "../../component/Search";
 
 const Home = () => (
   <>
-    <div className={style.search}> search</div>
+    <Search />
     <div className={style.results}> results</div>
   </>
 );
