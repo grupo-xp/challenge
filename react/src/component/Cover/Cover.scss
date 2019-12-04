@@ -1,0 +1,35 @@
+$img-size: 300px;
+$img-size-small: 170px;
+
+.Cover {
+  text-align: center;
+  width: $img-size;
+  &.small {
+    width: $img-size-small;
+  }
+  &:hover#{&} {
+    cursor: pointer;
+  }
+
+  .img {
+    background: $primary-bg;
+    border-color: $primary-bg;
+    width: 100%;
+    height: $img-size;
+    @at-root .small#{&} {
+      height: $img-size-small;
+    }
+    @at-root :hover#{&} {
+      opacity: 0.5;
+    }
+  }
+
+  .description {
+    font-size: $font-size-small;
+    .album {
+      @at-root :not(.small)#{&} {
+        font-size: $font-size-base;
+      }
+    }
+  }
+}
