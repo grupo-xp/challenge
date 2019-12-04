@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
+const isProd = process.env.WEBPACK_MODE === "production";
 
 module.exports = {
   devServer: {
@@ -22,12 +24,25 @@ module.exports = {
       {
         test: /\.(s*)css$/,
         use: [
-          "style-loader",
-          "css-loader",
+          isProd
+            ? "style-loader"
+            : {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  hmr: true
+                }
+              },
+          {
+            loader: require.resolve("css-loader"),
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          },
           {
             loader: "sass-loader",
             options: {
-              prependData: '@import "variables.scss";'
+              prependData: '@import "src/variables.scss";'
             }
           }
         ]
@@ -40,6 +55,7 @@ module.exports = {
   },
   plugins: [
     new Dotenv({ path: "./.env", defaults: true }),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html")
     })
