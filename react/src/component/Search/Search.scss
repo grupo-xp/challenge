@@ -1,4 +1,4 @@
-.Search {
+.search {
   display: inline-grid;
   min-height: 75px;
 
@@ -9,13 +9,12 @@
   }
 
   .input {
-    font-size: $font-size-h1;
-    color: $text-color;
-
     background: transparent;
-
     border: 0;
     border-bottom: 2px solid $text-muted;
+    color: $text-color;
+    font-size: $font-size-h1;
+    font-weight: bold;
     padding: $padding;
 
     &::placeholder {

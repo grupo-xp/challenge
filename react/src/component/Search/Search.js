@@ -3,7 +3,7 @@ import style from "./Search.scss";
 import PropTypes from "prop-types";
 
 export const Search = ({ onChange }) => (
-  <div className={style.Search}>
+  <div className={style.search}>
     <label htmlFor="search" className={style.label}>
       Busque por Artistas
     </label>
