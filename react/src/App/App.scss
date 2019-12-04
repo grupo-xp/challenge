@@ -1,0 +1,23 @@
+.header {
+  text-align: center;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: $gutter;
+  width: 100%;
+}
+
+@media (min-width: 720px) {
+  .header {
+    flex: 1;
+    max-width: 3rem;
+  }
+
+  .main {
+    height: 100%;
+  }
+}

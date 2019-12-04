@@ -1,0 +1,33 @@
+.nav {
+  background: red;
+  height: 75px;
+}
+
+.album {
+  background: purple;
+  height: 150px;
+}
+
+.list {
+  background: chartreuse;
+  flex: 1;
+  padding: 0 $padding;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+@media (min-width: 720px) {
+  .main {
+    flex-direction: row;
+  }
+
+  .album {
+    height: 100%;
+    padding: 0 $padding;
+    width: calc(150px + #{$gutter});
+  }
+}
