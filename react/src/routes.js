@@ -9,9 +9,7 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/album/:name">
-          <Album />
-        </Route>
+        <Route path="/album/:name" component={Album} />
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
