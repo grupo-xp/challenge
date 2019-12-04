@@ -1,17 +1,55 @@
 .nav {
-  background: red;
-  height: 75px;
+  .item {
+    align-items: center;
+    display: inline-flex;
+    margin: $gutter 0;
+    padding: $padding;
+    padding-left: 0;
+  }
 }
 
-.album {
-  background: purple;
-  height: 150px;
+@media (max-width: 720px) {
+  .album {
+    margin: 0 auto;
+  }
 }
 
 .list {
-  background: chartreuse;
+  counter-reset: item;
   flex: 1;
-  padding: 0 $padding;
+  margin: 0;
+  padding: 0 $gutter;
+
+  .item {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    margin-block: {
+      end: $font-size-base;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &::before {
+      color: $text-muted;
+      content: counter(item) ". ";
+      counter-increment: item;
+      padding-right: $padding;
+    }
+  }
+}
+.play {
+  display: none;
+  height: 100%;
+  position: absolute;
+  right: 0;
+
+  @at-root .item:hover &,
+    .item.active & {
+    display: inline-block;
+  }
 }
 
 .main {
@@ -26,8 +64,6 @@
   }
 
   .album {
-    height: 100%;
-    padding: 0 $padding;
-    width: calc(150px + #{$gutter});
+    height: fit-content;
   }
 }
