@@ -1,25 +1,58 @@
-import React from "react";
-import style from "./Search.scss";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classNames";
+import { connect } from "react-redux";
 
-export const Search = ({ className, onChange }) => (
-  <div className={classNames(style.search, className)}>
-    <label htmlFor="search" className={style.label}>
-      Busque por Artistas
-    </label>
-    <input
-      id="search"
-      className={style.input}
-      onChange={onChange}
-      placeholder="Comece a escrever..."
-      type="search"
-    ></input>
-  </div>
-);
+import { search } from "../../actions/index";
 
-Search.prototype = {
-  onChange: PropTypes.func
+import style from "./Search.scss";
+import useDebounce from "../../hoc/use-debounce";
+
+export const Search = ({ className, query, onChange }) => {
+  const [value, setValue] = useState(query);
+  const lastValue = useDebounce(value, 500);
+  const handleChange = e => setValue(e.target.value);
+
+  useEffect(() => {
+    onChange(lastValue);
+  }, [lastValue]);
+
+  return (
+    <div className={classNames(style.search, className)}>
+      <label htmlFor="search" className={style.label}>
+        Busque por Artistas
+      </label>
+      <input
+        id="search"
+        className={style.input}
+        onChange={handleChange}
+        placeholder="Comece a escrever..."
+        type="search"
+        value={value}
+      ></input>
+    </div>
+  );
 };
 
-export default Search;
+Search.defaultProps = {
+  query: "",
+  onChange: _ => _
+};
+
+Search.prototype = {
+  className: PropTypes.string,
+  onChange: PropTypes.func,
+  query: PropTypes.string
+};
+
+const mapStateToProps = ({ search }) => search;
+
+export default connect(
+  mapStateToProps,
+  search
+)(({ doFetch, reset, ...props }) =>
+  Search({
+    onChange: value => (value ? doFetch(value) : reset()),
+    ...props
+  })
+);
