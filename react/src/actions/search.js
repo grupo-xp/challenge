@@ -32,7 +32,7 @@ export const reset = () => ({
   type: actions.SEARCH_CLEAR
 });
 
-export const doFetch = q => {
+export const find = q => {
   return (dispatch, getState) => {
     dispatch(setLoading(q));
     const { lastsQuery, cache } = getState().search;

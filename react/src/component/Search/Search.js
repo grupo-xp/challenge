@@ -50,9 +50,9 @@ const mapStateToProps = ({ search }) => search;
 export default connect(
   mapStateToProps,
   search
-)(({ doFetch, reset, ...props }) =>
+)(({ find, reset, ...props }) =>
   Search({
-    onChange: value => (value ? doFetch(value) : reset()),
+    onChange: value => (value ? find(value) : reset()),
     ...props
   })
 );
