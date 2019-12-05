@@ -6,9 +6,16 @@ import Cover from "../Cover";
 export const Results = ({ title, data }) => (
   <section className={style.results}>
     <h2 className={style.title}>{title}</h2>
-    <div className={style.xpto}>
-      {data.map((val, key) => (
-        <Cover key={key} small name={val} artist={"artist"}></Cover>
+    <div className={style.flex}>
+      {data.map(({ id, name, artist, cover }, key) => (
+        <Cover
+          id={id}
+          key={key}
+          small
+          name={name}
+          cover={cover}
+          artist={artist}
+        ></Cover>
       ))}
     </div>
   </section>

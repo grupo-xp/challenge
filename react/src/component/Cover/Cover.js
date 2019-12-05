@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import style from "./Cover.scss";
 import PropTypes from "prop-types";
 import classNames from "classNames";
 
-export const Cover = ({ small, className, name, artist }) => (
+export const Cover = ({ small, className, id, name, artist, cover }) => (
   <div
     className={classNames(
       style.Cover,
@@ -13,13 +14,13 @@ export const Cover = ({ small, className, name, artist }) => (
       className
     )}
   >
-    <img className={style.img}></img>
-    <div className={style.description}>
+    <img className={style.img} src={cover}></img>
+    <Link to={`album/${id}`} className={style.description}>
       <p className={style.album}>{name}</p>
       <p className={style.artist}>
         <small>{artist}</small>
       </p>
-    </div>
+    </Link>
   </div>
 );
 
