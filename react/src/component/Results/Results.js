@@ -7,8 +7,8 @@ export const Results = ({ title, data }) => (
   <section className={style.results}>
     <h2 className={style.title}>{title}</h2>
     <div className={style.xpto}>
-      {data.map(val => (
-        <Cover small name={val} artist={"artist"}></Cover>
+      {data.map((val, key) => (
+        <Cover key={key} small name={val} artist={"artist"}></Cover>
       ))}
     </div>
   </section>

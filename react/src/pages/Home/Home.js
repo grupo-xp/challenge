@@ -1,9 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { search } from "../../actions/index";
+
 import Search from "../../component/Search";
 import Results from "../../component/Results";
 import style from "./Home.scss";
 
-export const Home = ({ query }) => (
+const Home = ({ query, doFetch, ...props }) => (
   <>
     <Search className={style.search} />
     {query ? (
@@ -26,4 +30,5 @@ export const Home = ({ query }) => (
   </>
 );
 
-export default () => Home({ query: "Bob" });
+const mapStateToProps = ({ search }) => search;
+export default connect(mapStateToProps, search)(Home);
