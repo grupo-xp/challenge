@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
         [action.query]: action.data
       };
       const lastsQuery = action.data.length
-        ? [...state.lastsQuery, action.query]
+        ? [...state.lastsQuery.filter(a => a != action.query), action.query]
         : state.lastsQuery;
 
       localStorage.setItem("cache", JSON.stringify(cache));
