@@ -8,6 +8,7 @@ import { auth } from "../../actions";
 import style from "./Auth.scss";
 
 const STATE_KEY = process.env.STATE_KEY || "STATE_KEY";
+const CLIENT_ID = process.env.CLIENT_ID;
 export const Auth = ({ getToken, setToken, token }) => {
   useEffect(() => {
     if (!location.hash) return;
@@ -23,9 +24,28 @@ export const Auth = ({ getToken, setToken, token }) => {
     <Redirect to="/" />
   ) : (
     <div className={style.auth}>
-      <button className={style.button} onClick={getToken}>
-        Conecte-se ao Spotify
-      </button>
+      {CLIENT_ID ? (
+        <button className={style.button} onClick={getToken}>
+          Conecte-se ao Spotify
+        </button>
+      ) : (
+        <div>
+          <h1>Você precisa de um CLIENT_ID</h1>
+          <p>
+            Para se conseguir uma CLIENT_ID{" "}
+            <a href="https://developer.spotify.com/dashboard/applications">
+              acesse o dash de desenvolvedores do spotify
+            </a>
+            , após isso basta criar um arquivo <code>.env</code> na raiz do
+            projeto com chave e valor e reiniciar a aplicação
+          </p>
+          <pre>CLIENT_ID=Valor do CLIENT_ID</pre>
+          <p>
+            *Lembre-se de configurar o Redirect da app{" "}
+            <code>http://localhost:3000/auth</code>
+          </p>
+        </div>
+      )}
     </div>
   );
 };

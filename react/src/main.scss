@@ -3,7 +3,6 @@
 :global {
   * {
     box-sizing: border-box;
-    font-family: $font-family;
     outline: 0;
   }
 
@@ -57,5 +56,9 @@
   small {
     color: $text-muted;
     font-size: $font-size-small;
+  }
+
+  input {
+    font-family: $font-family;
   }
 }

@@ -3,7 +3,7 @@ import cryptoRandomString from "crypto-random-string";
 import queryString from "querystring";
 
 const STATE_KEY = process.env.STATE_KEY || "STATE_KEY";
-const CLIENT_ID = process.env.CLIENT_ID || false;
+const CLIENT_ID = process.env.CLIENT_ID;
 const url = process.env.AUTH;
 
 const redirect = () => {
