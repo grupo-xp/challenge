@@ -32,28 +32,26 @@ export const reset = () => ({
   type: actions.ALBUM_CLEAR
 });
 
-export const find = id => {
-  return (dispatch, getState) => {
-    dispatch(setLoading());
-    const { albuns } = getState().album;
-    const { token } = getState().auth;
+export const find = id => (dispatch, getState) => {
+  dispatch(setLoading());
+  const { albuns } = getState().album;
+  const { token } = getState().auth;
 
-    albuns[id]
-      ? dispatch(setSucces(id, albuns[id]))
-      : fetch(`${url}/${id}`, {
-          headers: new Headers({
-            Authorization: `Bearer ${token}`
-          })
+  albuns[id]
+    ? dispatch(setSucces(id, albuns[id]))
+    : fetch(`${url}/${id}`, {
+        headers: new Headers({
+          Authorization: `Bearer ${token}`
         })
-          .then(response => {
-            if (!response.ok) {
-              if (response.status === 401) dispatch(resetToken());
-              throw Error(response.statusText);
-            }
-            return response;
-          })
-          .then(response => response.json())
-          .then(data => dispatch(setSucces(id, format(data))))
-          .catch(() => dispatch(setError()));
-  };
+      })
+        .then(response => {
+          if (!response.ok) {
+            if (response.status === 401) dispatch(resetToken());
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(data => dispatch(setSucces(id, format(data))))
+        .catch(() => dispatch(setError()));
 };
