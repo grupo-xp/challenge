@@ -1,4 +1,9 @@
 .nav {
+  @media (max-width: 720px) {
+    position: absolute;
+    top: 0;
+  }
+
   .item {
     align-items: center;
     display: inline-flex;
@@ -8,9 +13,12 @@
   }
 }
 
-@media (max-width: 720px) {
-  .album {
+.album {
+  @media (max-width: 720px) {
     margin: 0 auto;
+  }
+  @media (min-width: 720px) {
+    height: fit-content;
   }
 }
 
@@ -23,6 +31,7 @@
   .item {
     cursor: pointer;
     display: block;
+    padding-right: 1rem;
     position: relative;
     margin-block: {
       end: $font-size-base;
@@ -40,11 +49,13 @@
     }
   }
 }
+
 .play {
   display: none;
   height: 100%;
   position: absolute;
   right: 0;
+  top: 0;
 
   @at-root .item:hover &,
     .item.active & {
@@ -56,14 +67,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-}
-
-@media (min-width: 720px) {
-  .main {
+  @media (min-width: 720px) {
     flex-direction: row;
-  }
-
-  .album {
-    height: fit-content;
   }
 }
