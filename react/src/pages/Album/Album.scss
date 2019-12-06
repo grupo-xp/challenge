@@ -1,0 +1,73 @@
+.nav {
+  @media (max-width: 720px) {
+    position: absolute;
+    top: 0;
+  }
+
+  .item {
+    align-items: center;
+    display: inline-flex;
+    margin: $gutter 0;
+    padding: $padding;
+    padding-left: 0;
+  }
+}
+
+.album {
+  @media (max-width: 720px) {
+    margin: 0 auto;
+  }
+  @media (min-width: 720px) {
+    height: fit-content;
+  }
+}
+
+.list {
+  counter-reset: item;
+  flex: 1;
+  margin: 0;
+  padding: 0 $gutter;
+
+  .item {
+    cursor: pointer;
+    display: block;
+    padding-right: 1rem;
+    position: relative;
+    margin-block: {
+      end: $font-size-base;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &::before {
+      color: $text-muted;
+      content: counter(item) ". ";
+      counter-increment: item;
+      padding-right: $padding;
+    }
+  }
+}
+
+.play {
+  display: none;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  @at-root .item:hover &,
+    .item.active & {
+    display: inline-block;
+  }
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  @media (min-width: 720px) {
+    flex-direction: row;
+  }
+}

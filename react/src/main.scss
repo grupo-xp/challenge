@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+:global {
+  * {
+    box-sizing: border-box;
+    font-family: $font-family;
+    outline: 0;
+  }
+
+  html,
+  body,
+  #app {
+    background-color: $body-bg;
+    color: $text-color;
+    font-family: $font-family;
+    font-size: $font-size-base;
+    height: 100%;
+    margin: 0;
+    min-height: 100%;
+    padding: 0;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 720px) {
+      flex-direction: row;
+    }
+  }
+
+  h1 {
+    font-size: $font-size-h1;
+  }
+
+  h2 {
+    font-size: $font-size-h2;
+    font-weight: normal;
+  }
+
+  h3 {
+    font-size: $font-size-h3;
+  }
+
+  h4 {
+    font-size: $font-size-h4;
+  }
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $text-muted;
+    }
+  }
+
+  small {
+    color: $text-muted;
+    font-size: $font-size-small;
+  }
+}

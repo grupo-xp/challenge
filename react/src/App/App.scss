@@ -1,0 +1,26 @@
+.header {
+  font-size: $font-size-h1;
+  padding-top: $gutter;
+  text-align: center;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 $gutter;
+  padding-top: $gutter;
+  width: 100%;
+}
+
+@media (min-width: 720px) {
+  .header {
+    padding: $gutter;
+    width: auto;
+  }
+
+  .main {
+    height: 100%;
+  }
+}
