@@ -17,7 +17,7 @@ export const Cover = ({
 }) => (
   <div
     className={classNames(
-      style.Cover,
+      style.cover,
       {
         [style.small]: small
       },
@@ -35,9 +35,15 @@ export const Cover = ({
 );
 
 Cover.prototype = {
-  onChange: PropTypes.func
+  small: PropTypes.bool,
+  className: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  artist: PropTypes.string,
+  cover: PropTypes.string,
+  playAlbum: PropTypes.func
 };
 
-const mapStateToProps = () => ();
+const mapStateToProps = _ => _;
 
 export default connect(mapStateToProps, player)(Cover);
