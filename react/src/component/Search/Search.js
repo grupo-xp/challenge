@@ -45,7 +45,7 @@ Search.prototype = {
   query: PropTypes.string
 };
 
-const mapStateToProps = ({ search }) => search;
+const mapStateToProps = state => state.search;
 
 export default connect(
   mapStateToProps,

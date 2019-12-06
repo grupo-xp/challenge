@@ -7,7 +7,7 @@ const url = `${process.env.API}/search`;
 const format = ({ id, name, artists, images }) => ({
   id,
   name,
-  artist: artists.map(({ name }) => name).join(", "),
+  artist: artists.map(artist => artist.name).join(", "),
   cover: images[1]["url"]
 });
 

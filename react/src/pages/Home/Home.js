@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { search } from "../../actions/index";
+import { search as actionSearch } from "../../actions/index";
 
 import Search from "../../component/Search";
 import Results from "../../component/Results";
 import style from "./Home.scss";
 
-const Home = ({ query, cache, lastsQuery, ...props }) => {
+const Home = ({ query, cache, lastsQuery }) => {
   const size = lastsQuery.length - 1;
   const firstSession = lastsQuery[size];
   const secondSession = lastsQuery[size - 1];
@@ -38,5 +38,5 @@ const Home = ({ query, cache, lastsQuery, ...props }) => {
   );
 };
 
-const mapStateToProps = ({ search }) => search;
-export default connect(mapStateToProps, search)(Home);
+const mapStateToProps = state => state.search;
+export default connect(mapStateToProps, actionSearch)(Home);

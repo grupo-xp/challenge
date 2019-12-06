@@ -10,8 +10,12 @@ const isAuthenticated = () => sessionStorage.getItem("access_token");
 const PrivateRoute = ({ component: Component, ...props }) => (
   <Route
     {...props}
-    render={props =>
-      isAuthenticated() ? <Component {...props} /> : <Redirect to="/auth" />
+    render={renderProps =>
+      isAuthenticated() ? (
+        <Component {...renderProps} />
+      ) : (
+        <Redirect to="/auth" />
+      )
     }
   />
 );

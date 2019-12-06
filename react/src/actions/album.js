@@ -3,15 +3,16 @@ import { resetToken } from "./auth";
 
 const url = `${process.env.API}/albums`;
 
+const albumFormater = ({ name, id, href, preview_url }) => ({
+  id,
+  name,
+  href,
+  preview_url
+});
 const format = ({ images, name, tracks }) => ({
   cover: images[0].url,
   name,
-  tracks: tracks.items.map(({ name, id, href, preview_url }) => ({
-    id,
-    name,
-    href,
-    preview_url
-  }))
+  tracks: tracks.items.map(albumFormater)
 });
 
 export const setLoading = () => ({

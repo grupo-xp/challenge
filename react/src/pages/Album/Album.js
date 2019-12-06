@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { album, player } from "../../actions";
+import { album as actionAlbum, player as actionPlayer } from "../../actions";
 
 import {
   MdChevronLeft,
@@ -96,7 +96,10 @@ Album.prototype = {
   name: PropTypes.string,
   cover: PropTypes.string,
   artist: PropTypes.string,
-  tracks: PropTypes.array
+  tracks: PropTypes.array,
+  play: PropTypes.func,
+  currentAlbum: PropTypes.any,
+  player: PropTypes.any
 };
 
 const mapStateToProps = ({ album, player }) => ({
@@ -105,4 +108,6 @@ const mapStateToProps = ({ album, player }) => ({
   player
 });
 
-export default connect(mapStateToProps, { ...album, ...player })(Album);
+export default connect(mapStateToProps, { ...actionAlbum, ...actionPlayer })(
+  Album
+);

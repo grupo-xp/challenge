@@ -21,5 +21,5 @@ module.exports = {
     sourceType: "module"
   },
   plugins: ["react"],
-  rules: {}
+  rules: { "no-shadow": [2, { allow: ["done"] }] }
 };

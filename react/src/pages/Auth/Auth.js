@@ -36,5 +36,5 @@ Auth.prototype = {
   token: PropTypes.string
 };
 
-const mapStateToProps = ({ auth }) => auth;
+const mapStateToProps = state => state.auth;
 export default connect(mapStateToProps, auth)(Auth);
