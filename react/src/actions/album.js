@@ -6,7 +6,8 @@ const url = `${process.env.API}/albums`;
 const format = ({ images, name, tracks }) => ({
   cover: images[0].url,
   name,
-  tracks: tracks.items.map(({ name, href, preview_url }) => ({
+  tracks: tracks.items.map(({ name, id, href, preview_url }) => ({
+    id,
     name,
     href,
     preview_url

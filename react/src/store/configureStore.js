@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import reduxMulti from "redux-multi";
 import rootReducer from "../reducers";
 import history from "../history";
 import { TOKEN_RESET } from "../constants/actionTypes";
@@ -10,4 +11,8 @@ const logout = () => next => action => {
 };
 
 export default initialState =>
-  createStore(rootReducer, initialState, applyMiddleware(thunk, logout));
+  createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(thunk, reduxMulti, logout)
+  );

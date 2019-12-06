@@ -1,12 +1,14 @@
 $img-size: 300px;
 $img-size-small: 170px;
 
-.Cover {
+.cover {
   text-align: center;
   width: $img-size;
+
   &.small {
     width: $img-size-small;
   }
+
   &:hover#{&} {
     cursor: pointer;
   }
@@ -14,8 +16,8 @@ $img-size-small: 170px;
   .img {
     background: $primary-bg;
     border-color: $primary-bg;
-    width: 100%;
     height: $img-size;
+    width: 100%;
     @at-root .small#{&} {
       height: $img-size-small;
     }
@@ -26,6 +28,7 @@ $img-size-small: 170px;
 
   .description {
     font-size: $font-size-small;
+    
     .album {
       @at-root :not(.small)#{&} {
         font-size: $font-size-base;

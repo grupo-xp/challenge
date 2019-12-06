@@ -10,3 +10,8 @@ export const ALBUM_CLEAR = "ALBUM_CLEAR";
 
 export const TOKEN_SET = "TOKEN_SET";
 export const TOKEN_RESET = "TOKEN_RESET";
+
+export const PLAYER_ADD_TRACK = "PLAYER_ADD_TRACK";
+export const PLAYER_PLAY = "PLAYER_PLAY";
+export const PLAYER_STOP = "PLAYER_STOP";
+export const PLAYER_WAITING_ALBUM = "PLAYER_WAITING_ALBUM";

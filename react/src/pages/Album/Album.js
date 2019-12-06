@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { album } from "../../actions";
+import { album, player } from "../../actions";
 
 import {
   MdChevronLeft,
+  MdPauseCircleFilled,
   MdPlayCircleFilled,
   MdPlayCircleOutline
 } from "react-icons/md";
@@ -17,7 +18,27 @@ import style from "./Album.scss";
 import Cover from "../../component/Cover";
 import { Link } from "react-router-dom";
 
-const Album = ({ find, name, cover, artist, tracks }) => {
+const IconTogglePlay = ({ paused, isPlaying, ...props }) => {
+  var ruleRender = [
+    { Component: MdPlayCircleOutline, show: !isPlaying },
+    { Component: MdPauseCircleFilled, show: paused },
+    { Component: MdPlayCircleFilled, show: !paused }
+  ];
+  const { Component } = ruleRender.find(({ show }) => show);
+
+  return <Component {...props} />;
+};
+
+const Album = ({
+  find,
+  play,
+  currentAlbum,
+  name,
+  cover,
+  artist,
+  tracks,
+  player
+}) => {
   const { hash } = useParams();
   useEffect(() => {
     find(hash);
@@ -32,29 +53,30 @@ const Album = ({ find, name, cover, artist, tracks }) => {
       </nav>
       <div className={style.main}>
         <Cover
-          className={style.album}
-          cover={cover}
+          id={hash}
           name={name}
+          cover={cover}
           artist={artist}
+          className={style.album}
         ></Cover>
         <ol className={style.list}>
-          {tracks.map(({ name: trackName, preview_url }, key) => {
-            const Play = Boolean(key % 2)
-              ? MdPlayCircleFilled
-              : MdPlayCircleOutline;
+          {tracks.map((track, key) => {
+            const { name: trackName } = track;
+            const isPlaying = player.track === track;
             return (
               <li
-                onClick={async () => {
-                  const audio = await new Audio(preview_url);
-                  audio.play();
-                }}
+                onClick={() => play(track, currentAlbum)}
                 className={classNames(style.item, {
-                  [style.active]: Boolean(key % 2)
+                  [style.active]: isPlaying
                 })}
                 key={key}
               >
                 {trackName}
-                <Play className={style.play} />
+                <IconTogglePlay
+                  isPlaying={isPlaying}
+                  paused={player.current.paused}
+                  className={style.play}
+                />
               </li>
             );
           })}
@@ -77,5 +99,10 @@ Album.prototype = {
   tracks: PropTypes.array
 };
 
-const mapStateToProps = ({ album }) => album.current;
-export default connect(mapStateToProps, album)(Album);
+const mapStateToProps = ({ album, player }) => ({
+  ...album.current,
+  currentAlbum: album.current,
+  player
+});
+
+export default connect(mapStateToProps, { ...album, ...player })(Album);
