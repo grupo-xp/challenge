@@ -16,16 +16,14 @@ const PrivateRoute = ({ component: Component, ...props }) => (
   />
 );
 
-export default function Routes() {
-  return (
-    <Switch>
-      <Route path="/auth" component={Auth} />
-      <Route path="/auth/:hash" component={Auth} />
+export default () => (
+  <Switch>
+    <Route path="/auth" component={Auth} />
+    <Route path="/auth/:hash" component={Auth} />
 
-      <PrivateRoute path="/" exact component={Home} />
-      <PrivateRoute path="/album/:hash" component={Album} />
+    <PrivateRoute path="/" exact component={Home} />
+    <PrivateRoute path="/album/:hash" component={Album} />
 
-      <Redirect to="/" />
-    </Switch>
-  );
-}
+    <Redirect to="/" />
+  </Switch>
+);
