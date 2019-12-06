@@ -1,10 +1,8 @@
 import * as actions from "../constants/actionTypes";
 import querystring from "querystring";
+import { resetToken } from "./auth";
 
 const url = `${process.env.API}/search`;
-
-//TODO
-const headers = new Headers();
 
 const format = ({ id, name, artists, images }) => ({
   id,
@@ -36,14 +34,18 @@ export const find = q => {
   return (dispatch, getState) => {
     dispatch(setLoading(q));
     const { lastsQuery, cache } = getState().search;
+    const { token } = getState().auth;
 
     lastsQuery.includes(q)
       ? dispatch(setSucces(q, cache[q]))
       : fetch(`${url}?${querystring.stringify({ q, type: "album" })}`, {
-          headers
+          headers: new Headers({
+            Authorization: `Bearer ${token}`
+          })
         })
           .then(response => {
             if (!response.ok) {
+              if (response.status === 401) dispatch(resetToken());
               throw Error(response.statusText);
             }
             return response;

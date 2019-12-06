@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "crypto-random-string": "^3.0.1",
     "prop-types": "^15.7.2",
     "querystring": "^0.2.0",
     "react": "^16.9.0",

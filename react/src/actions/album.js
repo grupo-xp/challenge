@@ -1,9 +1,7 @@
 import * as actions from "../constants/actionTypes";
+import { resetToken } from "./auth";
 
 const url = `${process.env.API}/albums`;
-
-//TODO
-const headers = new Headers();
 
 const format = ({ images, name, tracks }) => ({
   cover: images[0].url,
@@ -37,15 +35,18 @@ export const find = id => {
   return (dispatch, getState) => {
     dispatch(setLoading());
     const { albuns } = getState().album;
+    const { token } = getState().auth;
 
     albuns[id]
       ? dispatch(setSucces(id, albuns[id]))
       : fetch(`${url}/${id}`, {
-          headers
+          headers: new Headers({
+            Authorization: `Bearer ${token}`
+          })
         })
           .then(response => {
             if (!response.ok) {
-              console.info(response.status === 401);
+              if (response.status === 401) dispatch(resetToken());
               throw Error(response.statusText);
             }
             return response;

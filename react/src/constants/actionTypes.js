@@ -8,3 +8,5 @@ export const ALBUM_ERROR = "ALBUM_ERROR";
 export const ALBUM_SUCCESS = "ALBUM_SUCCESS";
 export const ALBUM_CLEAR = "ALBUM_CLEAR";
 
+export const TOKEN_SET = "TOKEN_SET";
+export const TOKEN_RESET = "TOKEN_RESET";
