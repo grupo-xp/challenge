@@ -6,7 +6,9 @@
   "author": "Carlos Henrique Rabelo",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "dev": "webpack-dev-server --mode development",
+    "prestart": "npm i && npm run build",
+    "start": "node server",
     "build": "webpack --mode production",
     "test": "jest"
   },

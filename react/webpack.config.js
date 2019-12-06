@@ -3,13 +3,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
 const isProd = process.env.WEBPACK_MODE === "production";
+const PORT = 3000;
 
 module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
     historyApiFallback: true,
     hot: true,
-    port: 3000
+    port: PORT
   },
   entry: path.resolve(__dirname, "src", "index.js"),
   module: {

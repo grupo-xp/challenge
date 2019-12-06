@@ -9,6 +9,7 @@ import style from "./Auth.scss";
 
 const STATE_KEY = process.env.STATE_KEY || "STATE_KEY";
 const CLIENT_ID = process.env.CLIENT_ID;
+const PORT = 3000;
 export const Auth = ({ getToken, setToken, token }) => {
   useEffect(() => {
     if (!location.hash) return;
@@ -42,7 +43,7 @@ export const Auth = ({ getToken, setToken, token }) => {
           <pre>CLIENT_ID=Valor do CLIENT_ID</pre>
           <p>
             *Lembre-se de configurar o Redirect da app{" "}
-            <code>http://localhost:3000/auth</code>
+            <code>http://localhost:{PORT}/auth</code>
           </p>
         </div>
       )}
