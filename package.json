@@ -1,8 +1,8 @@
 {
   "name": "challenge-1",
   "version": "0.1.0",
-  "homepage": "https://princevasconcelos.github.io/challenge-1/",
   "private": true,
+  "homepage": "https://princevasconcelos.github.io/challenge-1/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
