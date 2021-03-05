@@ -1,7 +1,7 @@
 {
   "name": "challenge-1",
   "version": "0.1.0",
-  "homepage": "desafio-xp",
+  "homepage": "/challenge-1/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
