@@ -1,9 +1,8 @@
 import { createGlobalStyle } from "styled-components"
+import "@fontsource/roboto/300.css" // Weight 500.
+import "@fontsource/roboto/700.css"
 
 export default createGlobalStyle`
-  /* @import url('https://fonts.googleapis.com/css?family=Muli:200,400,600,700'); */
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
 	*,
 	*::before,
 	*::after {
@@ -12,14 +11,13 @@ export default createGlobalStyle`
 		box-sizing: border-box;
 	}
 
-	/* html,
-	body,
-	#root {
-		height: 100%;
-	} */
-
-  body {
+  	body {
 		font-family: 'Roboto';
-		/* font-size: 14px; */
+		background-color: rgb(22, 22, 22);
+		color: white;
+	}
+
+	a {
+		text-decoration: none;
 	}
 `;
