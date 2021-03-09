@@ -2,11 +2,11 @@
   "name": "challenge-1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://princevasconcelos.github.io/challenge-1/",
   "resolutions": {
     "styled-components": "^5"
   },
   "dependencies": {
+    "@fontsource/roboto": "^4.2.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.1",
