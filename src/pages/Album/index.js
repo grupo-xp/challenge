@@ -5,22 +5,15 @@ import { ReactComponent as BackIcon } from 'assets/back.svg';
 
 import Link from 'components/Link'
 
-const BackContainer = styled(Link)`
-  display: flex;
-  justify-content: center;
-
-  span {
-      background: crimson;
-      color: white;
-  }
-`
-
 const Text = styled.span`
   color: white;
+  font-size: 18px;
+  margin-left: 6px;
 `
 
-const Container = styled.div`
+const BackContainer = styled(Link)`
     display: flex;
+    align-items: center;
 `
 
 export default function Album () {
@@ -28,16 +21,16 @@ export default function Album () {
 
     const handleBack = () => history.goBack()
     return (
-        <Container id="princelokao">
-            <BackIcon 
+        <div>
+            <BackContainer onClick={handleBack}>
+                <BackIcon 
                     style={{ cursor: 'pointer' }}
-                    onClick={handleBack}
                     fill="white"
-                    width="16"
-                    height="16"
+                    width="12"
+                    height="12"
                 />
-            <Text>Voltar</Text>
-            
-        </Container>
+                <Text>Voltar</Text>
+            </BackContainer>
+        </div>
     )
 }

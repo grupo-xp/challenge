@@ -43,7 +43,7 @@ const Image = styled.img`
     
 `
 
-const parameterRegex = /\(|\)|[|]/g
+const parameterRegex = /\(|\)|[|]|,|\./g
 const notWordRegex = /\W/g
 
 const formatLink = albumName => albumName.toLowerCase().replace(parameterRegex,'').replace(notWordRegex, '-')
