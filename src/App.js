@@ -27,9 +27,10 @@ import {
 import Home from 'pages/Home'
 import Album from 'pages/Album'
 
+import { SearchProvider } from 'contexts/searchContext'
+
 const Container = styled.div`
   margin: 24px;
-  /* background: crimson; */
 
   @media (min-width: ${theme.media.sm}) {
     margin: 64px 32px;
@@ -75,21 +76,22 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('access_token')) return
-
-    window.location.href = 'https://spotify-api-bridge.herokuapp.com/login'
+    window.location.href = process.env.REACT_APP_LOGIN_URL
   }, [])
 
   return (
       <Container>
           <GlobalStyles />
           <SpotifyLogoContainer>
-            <SpotifyLogo fill="white" />
+            <SpotifyLogo fill="#1DB954" />
           </SpotifyLogoContainer>
           <Content>
-            <Router basename="/">
-              <Route exact path="/" component={Home} />
-              <Route exact path="/album/:artist" component={Album} />
-            </Router>
+            <SearchProvider>
+              <Router basename="/">
+                <Route exact path="/" component={Home} />
+                <Route exact path="/album/:artist" component={Album} />
+              </Router>
+            </SearchProvider>
             {/* <ModalToken requestToken={requestToken} />
             <Play /> */}
           </Content>

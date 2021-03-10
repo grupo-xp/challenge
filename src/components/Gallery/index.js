@@ -1,8 +1,18 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
+
+import SearchContext from 'contexts/searchContext'
 
 import Album from 'components/Album'
 import theme from 'theme'
+
+const RootContainer = styled.div`
+    margin-top: 64px;
+    
+    h3 {
+        font-size: 24px;
+    }
+`
 
 const ListContainer = styled.div`
     display: grid;
@@ -16,26 +26,40 @@ const ListContainer = styled.div`
     }
 `
 
-const RootContainer = styled.div`
-    margin-top: 24px;
-    
-    h3 {
-        font-size: 24px;
-    }
-`
+const createList = (array, title) => (
+    <RootContainer>
+        <h3>{title}</h3>
+        <ListContainer>
+            {array.map(({ id, name, images, artists }) =>
+                <Album 
+                    key={`${name}-${id}`}
+                    id={id}
+                    title={name}
+                    subtitle={artists[0].name}
+                    image={images[1].url } />)
+            }
+        </ListContainer>
+    </RootContainer>
+)
 
 export default ({ data, word }) => {
-    if (!word) return <div />
+    const { searchContextValues } = useContext(SearchContext)
+    const hasAlbumOnCache = Object.entries(searchContextValues.history)
 
-    if (data.length === 0) return <h3>Nenhum resultado encontrado para "{word}"</h3>
+    if (!word && hasAlbumOnCache.length > 0) {
+        return hasAlbumOnCache.map(cache => createList(
+            cache[1].albums.items.slice(0, 5),
+            `Álbums buscados recentemente para "${cache[0]}"`
+        ) )
+    }
+    
+    if (!word) return <RootContainer />
 
-    return (
+    if (data.length === 0) return (
         <RootContainer>
-            <h3>Resultados encontrados para "{word}"</h3>
-            <ListContainer>
-                {data.map(({ id, name, images, artists }) => <Album key={id} title={name} subtitle={artists[0].name} image={images[1].url } />)}
-            </ListContainer>
-
+            <h3>Nenhum resultado encontrado para "{word}"</h3>
         </RootContainer>
     )
+
+    return createList(data, `Resultados encontrados para "${word}"`)
 }
