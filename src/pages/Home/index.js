@@ -37,7 +37,10 @@ export default function Home () {
     }
 
     const searchAlbumsTracksAndArtists = async word => {
-        if (!word) return setSearchResult(initialSearchValue)
+        if (!word) {
+            localStorage.setItem('search', '')
+            return setSearchResult(initialSearchValue)
+        }
 
         const sanitizedWord = word
             .normalize('NFD')

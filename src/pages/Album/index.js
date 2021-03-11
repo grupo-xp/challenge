@@ -60,6 +60,7 @@ export default () => {
             title: data.name,
             subtitle: data.label,
             image: data.images[0].url,
+            artist: data.artists[0].name,
             tracks: data.tracks.items
         })
         savePlaylistOnSearchContext(albumId, data)
@@ -105,7 +106,7 @@ export default () => {
                     disableHover
                     id={albumValue.id}
                     title={albumValue.title}
-                    subtitle={albumValue.subtitle}
+                    subtitle={albumValue.artist}
                     image={albumValue.image} />
                 <Playlist data={albumValue.tracks} />
             </AlbumContainer>

@@ -92,8 +92,6 @@ function App() {
                 <Route exact path="/album/:artist" component={Album} />
               </Router>
             </SearchProvider>
-            {/* <ModalToken requestToken={requestToken} />
-            <Play /> */}
           </Content>
       </Container>
   )
