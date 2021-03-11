@@ -1,6 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react'
 import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
 
 import { ReactComponent as BackIcon } from 'assets/back.svg';
 
@@ -45,8 +44,6 @@ export default () => {
     const { searchContextValues, savePlaylistOnSearchContext } = useContext(SearchContext)
     const [albumValue, setAlbumValue] = useState({})
 
-    const history = useHistory()
-
     useEffect(() => {
         getPlaylist(searchContextValues.selectedAlbumId)
     }, [])
@@ -64,28 +61,6 @@ export default () => {
             tracks: data.tracks.items
         })
         savePlaylistOnSearchContext(albumId, data)
-        // console.log('prince data', data)
-        // if (!word) return setSearchResult(initialSearchValue)
-
-        // const sanitizedWord = word
-        //     .normalize('NFD')
-        //     .replace(diacriticsRegex, '')
-        //     .replace(spaceRegex, '%20')
-
-        // const cachedValue = searchContextValues.history[word]
-
-        // if (cachedValue) {
-        //     return setSearchResult({ items: cachedValue.albums.items, word })
-        // }
-
-        // return await API.get(
-        //     `https://api.spotify.com/v1/search?q=${sanitizedWord}&type=album,track,artist`
-        // ).then(results => {
-        //     if (!results) return
-        //     localStorage.setItem('search', word)
-        //     setSearchResult({ items: results.albums.items, word })
-        //     saveResultOnSearchContext(word, results)
-        // })
     }
 
     return (

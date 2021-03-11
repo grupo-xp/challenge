@@ -26,8 +26,8 @@ const ListContainer = styled.div`
     }
 `
 
-const createList = (array, title) => (
-    <RootContainer>
+const createList = (array, title, id) => (
+    <RootContainer key={id}>
         <h3>{title}</h3>
         <ListContainer>
             {array.map(({ id, name, images, artists }) =>
@@ -47,10 +47,11 @@ export default ({ data, word }) => {
     const hasAlbumOnCache = Object.entries(searchContextValues.history)
 
     if (!word && hasAlbumOnCache.length > 0) {
-        return hasAlbumOnCache.map(cache => createList(
+        return hasAlbumOnCache.map((cache, i) => createList(
             cache[1].albums.items.slice(0, 5),
-            `Álbums buscados recentemente para "${cache[0]}"`
-        ) )
+            `Álbums buscados recentemente para "${cache[0]}"`,
+            i
+        ))
     }
     
     if (!word) return <RootContainer />

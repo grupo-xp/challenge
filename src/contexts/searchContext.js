@@ -36,7 +36,7 @@ function searchReducer(state, action) {
     }
 }
 
-export function SearchProvider ({children}) {
+export function SearchProvider ({children, value}) {
     const [state, dispatch] = React.useReducer(searchReducer, INITIAL_STATE)
 
     const saveResultOnSearchContext = (word, results) => dispatch({
@@ -54,14 +54,15 @@ export function SearchProvider ({children}) {
         payload: {id, results}
     })
 
-    const value = {
+    const newValue = {
         searchContextValues: state,
         saveResultOnSearchContext,
         saveAlbumIdOnSearchContext,
-        savePlaylistOnSearchContext
+        savePlaylistOnSearchContext,
+        ...value
     }
 
-    return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>
+    return <SearchContext.Provider value={newValue}>{children}</SearchContext.Provider>
   }
 
 export default SearchContext
