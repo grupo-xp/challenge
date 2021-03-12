@@ -6,14 +6,14 @@ import Gallery from './index'
 import { SearchProvider } from 'contexts/searchContext'
 import { BrowserRouter as Router } from "react-router-dom";
 
-import Albums from 'tests/mocks/albums'
+import { albums } from 'tests/mocks/search'
 
 describe('<Gallery />', () => {
 	test(`should render a list of albums when data has values`, () => {
 		render(
 			<SearchProvider>
 				<Router>
-					<Gallery data={Albums} word="iron maiden" />
+					<Gallery data={albums} word="iron maiden" />
 				</Router>
 			</SearchProvider>
 		)
@@ -21,7 +21,7 @@ describe('<Gallery />', () => {
         expect(screen.getByRole(
             'heading', { name: 'Resultados encontrados para "iron maiden"'})
         ).toBeVisible()
-        Albums.forEach(({ name}) => expect(screen.getByText(name)).toBeVisible())
+        albums.forEach(({ name}) => expect(screen.getByText(name)).toBeVisible())
 	})
 
     test(`should render a empty message when data is empty`, () => {
@@ -57,7 +57,7 @@ describe('<Gallery />', () => {
                     history: {
                         'iron maiden': {
                             albums: {
-                                items: Albums
+                                items: albums
                             }
                         }
                     }
@@ -74,7 +74,7 @@ describe('<Gallery />', () => {
         ).toBeVisible()
 
 
-        Albums.slice(0,4).forEach(({ name }) => expect(screen.getByText(name)).toBeVisible())
+        albums.slice(0,4).forEach(({ name }) => expect(screen.getByText(name)).toBeVisible())
 	})
 })
 

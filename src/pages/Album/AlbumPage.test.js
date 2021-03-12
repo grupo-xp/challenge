@@ -1,31 +1,51 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { createMemoryHistory } from 'history'
 
 import AlbumPage from './index'
+import API from 'service'
 
 import { SearchProvider } from 'contexts/searchContext'
-import { BrowserRouter as Router } from "react-router-dom";
+import { Router } from "react-router-dom";
 
-import { albumMock } from 'tests/mocks/albums'
+import albumMock from 'tests/mocks/albumDetail'
 
 describe('Album Page', () => {
-	test(`should render an image, title and subtitle`, () => {
-		const { id, name, artists, images } = albumMock
+	test(`should render the Album and Playlist components`, async () => {
+		const saveOnContext = jest.fn()
 		const history = createMemoryHistory()
+		history.push('/albums/iron-maiden')
+		const apiMock = jest.spyOn(API, 'get').mockResolvedValue(albumMock)
 
-		const {debug} = render(
-			<SearchProvider>
+		render(
+			<SearchProvider value={{
+				savePlaylistOnSearchContext: saveOnContext,
+				searchContextValues: {
+					selectedAlbumId: 'any_id'
+				}
+			}}>
 				<Router history={history}>
 					<AlbumPage />
 				</Router>
 			</SearchProvider>
 		)
-		
-		debug()
-		// expect(screen.getByRole('img'))
-		// 	.toHaveProperty('src', 'https://i.scdn.co/image/ab67616d00001e026ac3ed972e1c181cd2ee8d55')
-		// expect(screen.getByText('Iron Maiden (2015 Remaster)')).toBeVisible()
-		// expect(screen.getByText('Iron Maiden')).toBeVisible()
+
+		await waitFor(() => {
+			act(() => {
+				expect(screen.getByText(albumMock.name)).toBeVisible()
+				expect(screen.getByText(albumMock.artists[0].name)).toBeVisible()
+				expect(screen.getByRole('img')).toHaveProperty('src', albumMock.images[0].url)
+				albumMock.tracks.items.forEach(t => expect(screen.getByText(t.name)).toBeVisible())
+			})
+		})
+
+		userEvent.click(screen.getByRole('link', { name: /voltar/i }))
+
+		expect(history.location.pathname).toBe('/')
+		expect(saveOnContext).toHaveBeenCalledTimes(1)
+		expect(saveOnContext).toHaveBeenCalledWith('any_id', albumMock)
+
+		apiMock.mockRestore()
 	})
 })
