@@ -2,10 +2,6 @@
 
 Aplicação em React que utiliza a API do spotify
 
-### Demonstração
-
-A aplicação está rodando em  [https://princevasconcelos.github.io/challenge-1/](https://princevasconcelos.github.io/challenge-1/)
-
 ### Stack
 
 1. [ReactJs](https://pt-br.reactjs.org/)
