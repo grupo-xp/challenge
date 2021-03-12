@@ -1,7 +1,3 @@
-// codigo disponível em:
-// https://github.com/princevasconcelos/spotify-api-bridge
-// a aplicação precisa esta rodando na porta 3000 (http://localhost:3000)
-
 let express = require("express");
 let request = require("request");
 let querystring = require("querystring");
