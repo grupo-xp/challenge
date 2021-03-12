@@ -26,6 +26,12 @@ const SpotifyLogoContainer = styled.div`
   height: 48px;
   top: 24px;
   left: calc(50% - 24px);
+
+  svg:hover {
+    cursor: pointer;
+    fill: #1DB954;
+    transform: rotate(360)
+  }
   
   @media (min-width: ${theme.media.sm}) {
     left: 32px;
@@ -66,7 +72,7 @@ function App() {
       <Container>
           <GlobalStyles />
           <SpotifyLogoContainer>
-            <SpotifyLogo fill="#1DB954" />
+            <SpotifyLogo fill="white" />
           </SpotifyLogoContainer>
           <Content>
             <SearchProvider>
