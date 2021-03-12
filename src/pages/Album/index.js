@@ -9,6 +9,7 @@ import SearchContext from "contexts/searchContext";
 import Link from "components/Link";
 import Album from "components/Album";
 import Playlist from "components/Playlist";
+import Loading from "components/Loading";
 
 import theme from "theme";
 
@@ -45,26 +46,47 @@ export default () => {
     SearchContext
   );
   const [albumValue, setAlbumValue] = useState({});
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     getPlaylist(searchContextValues.selectedAlbumId);
   }, [searchContextValues.selectedAlbumId]);
 
   const getPlaylist = async (albumId) => {
-    const data = await API.get(`https://api.spotify.com/v1/albums/${albumId}`);
+    const hasOnCache = searchContextValues.playlist[albumId]
 
-    if (!data) return;
+    if (hasOnCache) {
+      return setAlbumValue({
+        id: hasOnCache.id,
+        title: hasOnCache.name,
+        subtitle: hasOnCache.label,
+        image: hasOnCache.images[0].url,
+        artist: hasOnCache.artists[0].name,
+        tracks: hasOnCache.tracks.items,
+      });
+    }
+  
+    setLoading(true)
+    try {
+      const data = await API.get(`https://api.spotify.com/v1/albums/${albumId}`);
 
-    setAlbumValue({
-      id: data.id,
-      title: data.name,
-      subtitle: data.label,
-      image: data.images[0].url,
-      artist: data.artists[0].name,
-      tracks: data.tracks.items,
-    });
-    savePlaylistOnSearchContext(albumId, data);
+      if (!data) return;
+
+      setAlbumValue({
+        id: data.id,
+        title: data.name,
+        subtitle: data.label,
+        image: data.images[0].url,
+        artist: data.artists[0].name,
+        tracks: data.tracks.items,
+      });
+      savePlaylistOnSearchContext(albumId, data);
+    } catch (err) {} finally {
+      setLoading(false)
+    }
   };
+
+  if (loading) return <Loading />
 
   return (
     <div>

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import SearchContext from 'contexts/searchContext'
 
 import Album from 'components/Album'
+
 import theme from 'theme'
 
 const RootContainer = styled.div`

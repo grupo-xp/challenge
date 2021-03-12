@@ -4,6 +4,7 @@ import API from 'service'
 
 import SearchContext from 'contexts/searchContext'
 
+import Loading from 'components/Loading'
 import Search from 'components/Search'
 import Gallery from 'components/Gallery'
 
@@ -18,6 +19,7 @@ export default function Home () {
     const { searchContextValues, saveResultOnSearchContext } = useContext(SearchContext)
     const [searchValue, setSearchValue] = useState(localSearch || '')
     const [searchResult, setSearchResult] = useState(initialSearchValue)
+    const [loading, setLoading] = useState(false)
     const [timeoutId, setTimeoutId] = useState(null)
 
     useEffect(() => {
@@ -53,19 +55,26 @@ export default function Home () {
             return setSearchResult({ items: cachedValue.albums.items, word })
         }
 
-        return await API.get(
-            `https://api.spotify.com/v1/search?q=${sanitizedWord}&type=album,track,artist`
-        ).then(results => {
+        setLoading(true)
+        try {
+            const results = await API.get(`https://api.spotify.com/v1/search?q=${sanitizedWord}&type=album,track,artist`)
+
             if (!results) return
+
             localStorage.setItem('search', word)
             setSearchResult({ items: results.albums.items, word })
             saveResultOnSearchContext(word, results)
-        })
+        } catch (err) {
+            
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
         <div>
             <Search value={searchValue} onChange={handleSearchType} />
+            {loading ? <Loading /> : null}
             <Gallery data={searchResult.items} word={searchResult.word} />
         </div>
     )

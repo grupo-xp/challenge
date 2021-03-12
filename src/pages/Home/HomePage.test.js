@@ -1,5 +1,5 @@
 import React from 'react'
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryHistory } from 'history'
 
@@ -14,7 +14,6 @@ import searchMock, { albums } from 'tests/mocks/search'
 describe('Home Page', () => {
 	beforeEach(() => {
 		jest.useFakeTimers()
-		jest.clearAllMocks()
 		jest.restoreAllMocks()
 	})
 
@@ -36,7 +35,6 @@ describe('Home Page', () => {
 			</SearchProvider>
 		)
 
-
 		userEvent.type(
 			screen.getByRole('textbox', { name: "Busque por artistas, álbuns ou músicas"}),
 			'iron maiden'
@@ -45,7 +43,7 @@ describe('Home Page', () => {
 		expect(screen.getByLabelText('Busque por artistas, álbuns ou músicas'))
 			.toHaveProperty('value', 'iron maiden')
 
-		jest.advanceTimersByTime(1000)
+		act(() => jest.advanceTimersByTime(1000))
 
 		await waitFor(() => {
 			expect(screen.getByText('Resultados encontrados para "iron maiden"')).toBeVisible()
