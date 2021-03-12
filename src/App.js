@@ -1,28 +1,11 @@
-import React, { useEffect, useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { HashRouter as Router, Route } from 'react-router-dom'
-// import Home from 'components/pages/Home'
-// import Container from 'components/Container'
-// import Content from 'components/Content'
-// import Logo from 'components/Logo'
-// import Album from 'components/pages/Album'
-// import ModalToken from 'components/ModalToken'
-// import Play from 'components/Play'
-// import { tokenRequest } from 'store/reducers/token'
+import React, { useEffect } from 'react'
 import GlobalStyles from 'GlobalStyles'
 import styled from 'styled-components'
 import { ReactComponent as SpotifyLogo } from 'assets/spotify.svg';
 import theme from 'theme'
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Redirect,
-  Link as RouterLink,
-  useHistory,
-  useLocation,
-  useParams,
-  useRouteMatch,
 } from "react-router-dom";
 import Home from 'pages/Home'
 import Album from 'pages/Album'

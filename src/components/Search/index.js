@@ -1,12 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import theme from 'theme'
-
-const SearchContainer = styled.div`
-  display: flex;
-  width: 100%;
-`
 
 const Container = styled.div`
   width: 100%;
@@ -40,18 +35,6 @@ const Container = styled.div`
     }
   }
 `
-
-const Label = styled.label`
-  /* width: 100%;
-  height: 32px; */
-
-`
-
-const Searchbar = styled.input`
-  /* width: 100%;
-  height: 32px; */
-`
-
 
 export default function Search ({ value, onChange }) {
     return (

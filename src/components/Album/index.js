@@ -15,7 +15,7 @@ const Container = styled(Link)`
     align-items: center;
     color: white;
 
-    ${props => !props.disablehover && css`
+    ${props => !props.hover && css`
         &:hover {
             transform: translateY(-5px);
             transition: all, .5s;
@@ -26,7 +26,7 @@ const Container = styled(Link)`
             }
         }
     `}
-
+    
     span {
         margin-top: 16px;
         text-align: center;
@@ -57,20 +57,17 @@ const ImageContainer = styled.div`
   }
 `
 
-const parameterRegex = /[-!$%&^*()_+|~=`{}\[\]:";'<>?,.\/]/g
-const notWordRegex = /\W/g
-
 const formatLink = (albumName = '') => albumName.toLowerCase().replace(/\s/g, '-')
 
-export default ({ id, title, subtitle, image, size = 'sm', disableHover }) => {
+export default ({ id, title, subtitle, image, size = 'sm', hover }) => {
     const { saveAlbumIdOnSearchContext } = useContext(SearchContext)
 
     const handleAlbumClick = () => saveAlbumIdOnSearchContext(id)
 
     return (
-        <Container disablehover={disableHover} size={size} to={`/album/${formatLink(title)}`} onClick={handleAlbumClick}>
+        <Container hover={hover} size={size} to={`/album/${formatLink(title)}`} onClick={handleAlbumClick}>
             <ImageContainer size={size}>
-                <img src={image} /> 
+                <img src={image} alt={title} /> 
             </ImageContainer>
             <span>{title}</span>
             <p>{subtitle}</p>

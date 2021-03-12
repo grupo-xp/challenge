@@ -1,4 +1,4 @@
-import React, {useReducer, useMemo} from 'react'
+import React, {useReducer} from 'react'
 
 const INITIAL_STATE = {
     history: {},
@@ -37,7 +37,7 @@ function searchReducer(state, action) {
 }
 
 export function SearchProvider ({children, value}) {
-    const [state, dispatch] = React.useReducer(searchReducer, INITIAL_STATE)
+    const [state, dispatch] = useReducer(searchReducer, INITIAL_STATE)
 
     const saveResultOnSearchContext = (word, results) => dispatch({
         type: 'SEARCH_WORD',
