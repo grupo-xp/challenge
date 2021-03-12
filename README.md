@@ -2,6 +2,11 @@
 
 Aplicação em React que utiliza a API do spotify
 
+### Requisitos
+
+1. Ter o node instalado (npm)
+2. A aplicação deve rodar na porta 3000
+
 ### Overview
 
 A aplicação funciona de uma maneira bem simples. Ao carregar a página inicial,
